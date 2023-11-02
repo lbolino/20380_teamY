@@ -3,11 +3,13 @@
 f1 = figure;
 k = [4.478e-5, 1.153e-8, 0.405, 1e6, 0.27, 25.2, 1.14, 1e5, 2.306e-9];
 t_span = [0,10000];
-y0 = zeros(9,1);
+y0 = [1.43e-22, 0, 1e-6, 0, 0, 0, 0.0606, 0, 0];
 
 [t,y] = ode15s(@model, t_span, y0, [], k);
 P = y(:,4);
 plot(t, P)
+xlabel("Time (seconds)")
+ylabel("Concentration (Molar)")
 
 function dydt = model(~,y,k)
     dydt = zeros(9,1);
